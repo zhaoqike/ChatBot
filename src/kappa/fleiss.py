@@ -7,7 +7,7 @@ Created on Aug 1, 2016
 Computes Fleiss' Kappa 
 Joseph L. Fleiss, Measuring Nominal Scale Agreement Among Many Raters, 1971.
 '''
-
+from __future__ import division
 def checkInput(rate, n):
     """ 
     Check correctness of the input matrix
