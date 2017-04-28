@@ -46,7 +46,7 @@ def append_text(path, text):
 
 def grab_page(page_num):
     wait_random()
-    timeline = client.statuses__public_timeline(page=page_num)
+    timeline = client.statuses__public_timeline(page=page_num, count=200)
     statuses = timeline['statuses']
     length = len(statuses)
     print "page: ", page_num, "length: ", length
@@ -57,11 +57,11 @@ def grab_page(page_num):
         print u'text:'+statuses[si]['text']
 
         commlist = []
-        # wait_random()
-        # comments = client.comments__show(id=statuses[si]['id'])['comments']
-        # for ci in range(0, len(comments)):
-        #     print u'comment:'+comments[ci]['text']
-        #     commlist.append(comments[ci]['text'])
+        wait_random()
+        comments = client.comments__show(id=statuses[si]['id'])['comments']
+        for ci in range(0, len(comments)):
+            print u'comment:'+comments[ci]['text']
+            commlist.append(comments[ci]['text'])
         d = collections.OrderedDict()
         d['id'] = statuses[si]['id']
         d['text'] = statuses[si]['text']
@@ -69,6 +69,6 @@ def grab_page(page_num):
         append_text('/home/zhaoqike/weibotext.txt', json.dumps(d, ensure_ascii=False))
 
 
-for i in range(0, 10):
+for i in range(1, 10):
     print 'page: ', i
     grab_page(i)
